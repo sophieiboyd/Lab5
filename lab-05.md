@@ -85,10 +85,78 @@ of state).
 
 ### Exercise 5
 
-…
+To add a new variable to a data frame while keeping the existing
+variables, we use the mutate function.
+
+``` r
+haversine <- function(long1, lat1, long2, lat2, round = 3) {
+  # convert to radians
+  long1 <- long1 * pi / 180
+  lat1 <- lat1 * pi / 180
+  long2 <- long2 * pi / 180
+  lat2 <- lat2 * pi / 180
+
+  R <- 6371 # Earth mean radius in km
+
+  a <- sin((lat2 - lat1) / 2)^2 + cos(lat1) * cos(lat2) * sin((long2 - long1) / 2)^2
+  d <- R * 2 * asin(sqrt(a))
+
+  return(round(d, round)) # distance in km
+}
+```
 
 ### Exercise 6
 
-…
+``` r
+dn_lq_ak <- dn_lq_ak %>%
+  mutate(distance = haversine(longitude.x, latitude.x, longitude.y, latitude.y, round = 3))
+```
 
-Add exercise headings as needed.
+### Exercise 7
+
+``` r
+dn_lq_ak <- dn_lq_ak %>%
+  group_by(address.x) %>%
+  mutate(min_distance = min(distance)) %>%
+  ungroup()
+```
+
+### Exercise 8
+
+``` r
+ggplot(data = dn_lq_ak, aes(x = min_distance)) +
+  geom_density(fill = "lightblue", alpha = 0.3) +
+  labs(title = "Minimum Distances Between Denny's and La Quinta Locations in Alaska",
+       x = "Minimum Distance From La Quinta (in miles)",
+       y = "Count",
+       ) +
+  theme_minimal() +
+  scale_fill_viridis_d()
+```
+
+![](lab-05_files/figure-gfm/AK-plot-1.png)<!-- -->
+
+One Denny’s location in Alaska is especially close to a La Quinta (about
+2 miles), while the other 2 Denny’s locations are between 5 and 6 miles
+away from a La Quinta. There are very few values in the distribution,
+but I would tentatively describe this as left-skewed.
+
+##### Descriptives:
+
+``` r
+mean(dn_lq_ak$min_distance)
+```
+
+    ## [1] 4.41
+
+``` r
+min(dn_lq_ak$min_distance)
+```
+
+    ## [1] 2.035
+
+``` r
+max(dn_lq_ak$min_distance)
+```
+
+    ## [1] 5.998
