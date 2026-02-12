@@ -45,7 +45,7 @@ We need to calculate 6 distances to cover all possible combinations of Denny's a
 
 ### Exercise 3
 
-```{r dn-lq-join}
+```{r dn-lq-join-AK}
 dn_lq_ak <- full_join(dn_ak, lq_ak,
   by = "state"
 )
@@ -79,14 +79,14 @@ haversine <- function(long1, lat1, long2, lat2, round = 3) {
 
 ### Exercise 6
 
-```{r distance}
+```{r distance-AK}
 dn_lq_ak <- dn_lq_ak %>%
   mutate(distance = haversine(longitude.x, latitude.x, longitude.y, latitude.y, round = 3))
 ```
 
 ### Exercise 7
 
-```{r min-distance}
+```{r min-distance-AK}
 dn_lq_ak <- dn_lq_ak %>%
   group_by(address.x) %>%
   mutate(min_distance = min(distance)) %>%
@@ -102,17 +102,86 @@ ggplot(data = dn_lq_ak, aes(x = min_distance)) +
        x = "Minimum Distance From La Quinta (in miles)",
        y = "Count",
        ) +
-  theme_minimal() +
-  scale_fill_viridis_d()
+  theme_minimal() 
 ```
-
-One Denny's location in Alaska is especially close to a La Quinta (about 2 miles), while the other 2 Denny's locations are between 5 and 6 miles away from a La Quinta. There are very few values in the distribution, but I would tentatively describe this as left-skewed.
 
 ##### Descriptives:
 
 ```{r AK-sum-stats}
 mean(dn_lq_ak$min_distance)
+median(dn_lq_ak$min_distance)
 min(dn_lq_ak$min_distance)
 max(dn_lq_ak$min_distance)
 ```
+One Denny's location in Alaska is especially close to a La Quinta (about 2 miles), while the other 2 Denny's locations are between 5 and 6 miles away from a La Quinta. There are very few values in the distribution, but I would tentatively describe this as left-skewed.
+
+
+### Exercise 9
+
+#### Filtering Denny's and La Quinta data frames for NC
+
+```{r NC-dennys}
+dn_nc <- dennys %>%
+  filter(state == "NC")
+nrow(dn_nc)
+```
+
+```{r NC-laquinta}
+lq_nc <- laquinta %>%
+  filter(state == "NC")
+nrow(lq_nc)
+```
+
+There are 28 Denny's locations and 12 La Quinta locations in North Carolina.
+
+#### Joining the data frames to get a list of all possible pairings:
+
+```{r dn-lq-join-NC}
+dn_lq_nc <- full_join(dn_nc, lq_nc,
+  by = "state"
+)
+dn_lq_nc
+```
+
+#### Calculating the distances between the pairings:
+
+```{r distance-NC}
+dn_lq_nc <- dn_lq_nc %>%
+  mutate(distance = haversine(longitude.x, latitude.x, longitude.y, latitude.y, round = 3))
+```
+
+
+#### Calculating the minimum distance between each Denny's and La Quinta location:
+
+```{r min-distance-NC}
+dn_lq_nc <- dn_lq_nc %>%
+  group_by(address.x) %>%
+  mutate(min_distance = min(distance)) %>%
+  ungroup()
+```
+
+
+#### Visualizing and summarizing:
+
+```{r NC-plot}
+ggplot(data = dn_lq_nc, aes(x = min_distance)) +
+  geom_density(fill = "lightblue", alpha = 0.3) +
+  labs(title = "Minimum Distances Between Denny's and La Quinta Locations in NC",
+       x = "Minimum Distance From La Quinta (in miles)",
+       y = "Count",
+       ) +
+  theme_minimal() 
+```
+
+##### Descriptives: 
+
+```{r NC-sum-stats}
+mean(dn_lq_nc$min_distance)
+median(dn_lq_nc$min_distance)
+min(dn_lq_nc$min_distance)
+max(dn_lq_nc$min_distance)
+```
+The distribution of minimum distances from La Quinta is skewed right for North Carolina. The distribution of minimum distances is centered around 50-60 miles, but the highest minimum distance is 187.94 miles. 
+
+
 
