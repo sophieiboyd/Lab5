@@ -515,3 +515,11 @@ The distribution of minimum distances is also right-skewed for Arizona.
 The median minimum distance from a Denny’s to a La Quinta is 7.95 miles,
 but the mean minimum distance is 36.94 miles and the highest minimum
 distance is 242.73 miles.
+
+### Exercise 12
+
+Among Alaska, North Carolina, Texas, and Arizona, I would say that Mitch
+Hedberg’s joke is most applicable to Texas. Texas has more Denny’s and
+La Quinta locations than the other states, and most of the Denny’s
+locations are very close to a La Quinta, as evidenced by the low mean
+(5.79 miles) and median (3.37 miles) values in the distribution.
