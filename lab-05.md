@@ -1,7 +1,7 @@
 Lab 05 - La Quinta is Spanish for next to Denny’s, Pt. 2
 ================
-Insert your name here
-Insert date here
+Sophie Boyd
+2-13-26
 
 ### Load packages and data
 
@@ -16,15 +16,27 @@ states <- read_csv("data/states.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here. Add code
-chunks as needed. Don’t forget to label your code chunk. Do not use
-spaces in code chunk labels.
+``` r
+dn_ak <- dennys %>%
+  filter(state == "AK")
+nrow(dn_ak)
+```
+
+    ## [1] 3
+
+There are three Denny’s locations in Alaska.
 
 ### Exercise 2
 
-Remove this text, and add your answer for Exercise 1 here. Add code
-chunks as needed. Don’t forget to label your code chunk. Do not use
-spaces in code chunk labels.
+``` r
+lq_ak <- laquinta %>%
+  filter(state == "AK")
+nrow(lq_ak)
+```
+
+    ## [1] 2
+
+There are two La Quinta locations in Alaska.
 
 ### Exercise 3
 
