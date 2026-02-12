@@ -37,13 +37,24 @@ There are two La Quinta locations in Alaska.
 
 ### Exercise 2
 
+```{r AK-dn-lq}
+nrow(dn_ak) * nrow(lq_ak)
+```
+
+We need to calculate 6 distances to cover all possible combinations of Denny's and La Quinta locations in Alaska.
+
 ### Exercise 3
 
-...
+```{r dn-lq-join}
+dn_lq_ak <- full_join(dn_ak, lq_ak,
+  by = "state"
+)
+dn_lq_ak
+```
 
 ### Exercise 4
 
-...
+There are six observations in the joined data frame. The names of the variables are address, city, state, zip, longitude, latitude, address, city, zip, each with a version followed by .x and .y (with the exception of state).
 
 ### Exercise 5
 
