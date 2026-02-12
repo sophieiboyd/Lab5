@@ -26,8 +26,6 @@ nrow(dn_ak)
 
 There are three Denny’s locations in Alaska.
 
-### Exercise 2
-
 ``` r
 lq_ak <- laquinta %>%
   filter(state == "AK")
@@ -37,6 +35,8 @@ nrow(lq_ak)
     ## [1] 2
 
 There are two La Quinta locations in Alaska.
+
+### Exercise 2
 
 ### Exercise 3
 
