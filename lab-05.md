@@ -53,15 +53,6 @@ Denny’s and La Quinta locations in Alaska.
 dn_lq_ak <- full_join(dn_ak, lq_ak,
   by = "state"
 )
-```
-
-    ## Warning in full_join(dn_ak, lq_ak, by = "state"): Detected an unexpected many-to-many relationship between `x` and `y`.
-    ## ℹ Row 1 of `x` matches multiple rows in `y`.
-    ## ℹ Row 1 of `y` matches multiple rows in `x`.
-    ## ℹ If a many-to-many relationship is expected, set `relationship =
-    ##   "many-to-many"` to silence this warning.
-
-``` r
 dn_lq_ak
 ```
 
@@ -79,9 +70,8 @@ dn_lq_ak
 ### Exercise 4
 
 There are six observations in the joined data frame. The names of the
-variables are address, city, state, zip, longitude, latitude, address,
-city, zip, each with a version followed by .x and .y (with the exception
-of state).
+variables are address, city, state, zip, longitude, and latitude, each
+with a version followed by .x and .y (with the exception of state).
 
 ### Exercise 5
 
@@ -127,7 +117,7 @@ dn_lq_ak <- dn_lq_ak %>%
 ggplot(data = dn_lq_ak, aes(x = min_distance)) +
   geom_density(fill = "lightblue", alpha = 0.3) +
   labs(title = "Minimum Distances Between Denny's and La Quinta Locations in AK",
-       x = "Minimum Distance From La Quinta (in miles)",
+       x = "Minimum Distance (in miles)",
        y = "Count",
        ) +
   theme_minimal() 
@@ -195,15 +185,6 @@ Carolina.
 dn_lq_nc <- full_join(dn_nc, lq_nc,
   by = "state"
 )
-```
-
-    ## Warning in full_join(dn_nc, lq_nc, by = "state"): Detected an unexpected many-to-many relationship between `x` and `y`.
-    ## ℹ Row 1 of `x` matches multiple rows in `y`.
-    ## ℹ Row 1 of `y` matches multiple rows in `x`.
-    ## ℹ If a many-to-many relationship is expected, set `relationship =
-    ##   "many-to-many"` to silence this warning.
-
-``` r
 dn_lq_nc
 ```
 
@@ -245,7 +226,7 @@ dn_lq_nc <- dn_lq_nc %>%
 ggplot(data = dn_lq_nc, aes(x = min_distance)) +
   geom_density(fill = "lightblue", alpha = 0.3) +
   labs(title = "Minimum Distances Between Denny's and La Quinta Locations in NC",
-       x = "Minimum Distance From La Quinta (in miles)",
+       x = "Minimum Distance (in miles)",
        y = "Count",
        ) +
   theme_minimal() 
@@ -311,15 +292,6 @@ There are 200 Denny’s locations and 237 La Quinta locations in Texas.
 dn_lq_tx <- full_join(dn_tx, lq_tx,
   by = "state"
 )
-```
-
-    ## Warning in full_join(dn_tx, lq_tx, by = "state"): Detected an unexpected many-to-many relationship between `x` and `y`.
-    ## ℹ Row 1 of `x` matches multiple rows in `y`.
-    ## ℹ Row 1 of `y` matches multiple rows in `x`.
-    ## ℹ If a many-to-many relationship is expected, set `relationship =
-    ##   "many-to-many"` to silence this warning.
-
-``` r
 dn_lq_tx
 ```
 
@@ -361,7 +333,7 @@ dn_lq_tx <- dn_lq_tx %>%
 ggplot(data = dn_lq_tx, aes(x = min_distance)) +
   geom_density(fill = "lightblue", alpha = 0.3) +
   labs(title = "Minimum Distances Between Denny's and La Quinta Locations in TX",
-       x = "Minimum Distance From La Quinta (in miles)",
+       x = "Minimum Distance (in miles)",
        y = "Count",
        ) +
   theme_minimal() 
@@ -396,8 +368,8 @@ max(dn_lq_tx$min_distance)
     ## [1] 60.582
 
 The distribution of minimum distances for Texas is very right-skewed.
-Most of the minimum distances are quite low (between 3 and 6 miles), but
-the highest minimum distance is 60.58 miles.
+Most of the minimum distances are quite low (centered around 3-6 miles),
+but the highest minimum distance is 60.58 miles.
 
 ### Exercise 11 (state of choice: Arizona)
 
@@ -427,15 +399,6 @@ There are 83 Denny’s locations and 18 La Quinta locations in Arizona.
 dn_lq_az <- full_join(dn_az, lq_az,
   by = "state"
 )
-```
-
-    ## Warning in full_join(dn_az, lq_az, by = "state"): Detected an unexpected many-to-many relationship between `x` and `y`.
-    ## ℹ Row 1 of `x` matches multiple rows in `y`.
-    ## ℹ Row 1 of `y` matches multiple rows in `x`.
-    ## ℹ If a many-to-many relationship is expected, set `relationship =
-    ##   "many-to-many"` to silence this warning.
-
-``` r
 dn_lq_az
 ```
 
@@ -477,7 +440,7 @@ dn_lq_az <- dn_lq_az %>%
 ggplot(data = dn_lq_az, aes(x = min_distance)) +
   geom_density(fill = "lightblue", alpha = 0.3) +
   labs(title = "Minimum Distances Between Denny's and La Quinta Locations in AZ",
-       x = "Minimum Distance From La Quinta (in miles)",
+       x = "Minimum Distance (in miles)",
        y = "Count",
        ) +
   theme_minimal() 
